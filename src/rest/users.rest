@@ -1,0 +1,13 @@
+###  GET ALL USERS ###
+GET http://localhost:3200/api/users
+
+### CREATE NEW USER ###
+
+POST http://localhost:3200/api/users
+Content-Type: application/json
+
+{
+  "username": "NewUser",
+  "email": "NewUser@mail.com",
+  "password": "NewPass"
+}

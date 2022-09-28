@@ -1,0 +1,15 @@
+### package-lock  ###
+package-lock.json
+
+### node_modules  ###
+node_modules/*
+
+### build folder  ###
+dist/*
+build/*
+
+### environment ###
+.env
+
+### eslint-cache ###
+.eslintcache
