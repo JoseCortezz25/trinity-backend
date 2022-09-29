@@ -1,0 +1,7 @@
+###  GET ALL paths ###
+GET http://localhost:3200/api/aprender/paths
+Authorization: Bearer <token>
+
+### GET ALL RECOMMENDATIONS  ###
+GET http://localhost:3200/api/aprender/recommendations
+Authorization: Bearer <token>

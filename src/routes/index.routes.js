@@ -1,8 +1,10 @@
 const { Router } = require('express')
-const router = Router()
-const { userRouter } = require('./users.routes')
-const handleAuth = require('../middlewares/handleAuth')
 const { sessionController } = require('../controllers/SessionController')
+const { userRouter } = require('./users.routes')
+const { plataformRouter } = require('./plataform.routes')
+const handleAuth = require('../middlewares/handleAuth')
+
+const router = Router()
 
 router.get('/', (_, res) => {
   res
@@ -19,5 +21,8 @@ router.use(handleAuth)
 router.post('/login', sessionController.login)
 
 router.use('/users', userRouter)
+
+// Routing Plataform View
+router.use('/aprender', plataformRouter)
 
 module.exports = router
