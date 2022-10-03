@@ -9,23 +9,30 @@ class UsersController extends PrimaryController {
 
   create = async (req, res, next) => {
     try {
-      const { body } = req
-      const { username, password, rol } = body
-      const userValidateUsername = await User.findOne({ username })
-      const message = `this username already exist`
+      const {
+        body: {
+          userData: { fullname, email, password, rol, status },
+        },
+      } = req
+      console.log({ fullname, email, password, rol, status })
+      const userValidateEmail = await User.findOne({ email })
+      const message = `Este correo ya existe`
 
-      if (userValidateUsername)
+      if (userValidateEmail)
         return res.status(409).json({ error: 409, message }).end()
 
       const saltRounds = 10
       const passwordHash = await bcrypt.hash(password, saltRounds)
       const user = new User({
-        username,
+        fullname,
+        email,
+        status,
         passwordHash,
         rol,
       })
 
       const savedUser = await user.save()
+      console.log('savedUser', savedUser)
       return res.status(201).json(savedUser).end()
     } catch (e) {
       next(e)
@@ -34,5 +41,4 @@ class UsersController extends PrimaryController {
 }
 
 const userController = new UsersController()
-
 module.exports = { userController }

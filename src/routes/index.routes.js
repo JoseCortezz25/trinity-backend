@@ -3,8 +3,13 @@ const { sessionController } = require('../controllers/SessionController')
 const { userRouter } = require('./users.routes')
 const { plataformRouter } = require('./plataform.routes')
 const handleAuth = require('../middlewares/handleAuth')
+const { userController } = require('../controllers/UsersController')
 
 const router = Router()
+
+// session || login route
+router.post('/login', sessionController.login)
+router.post('/register', userController.create)
 
 router.get('/', (_, res) => {
   res
@@ -16,9 +21,6 @@ router.get('/', (_, res) => {
 })
 
 router.use(handleAuth)
-
-// session || login route
-router.post('/login', sessionController.login)
 
 router.use('/users', userRouter)
 
