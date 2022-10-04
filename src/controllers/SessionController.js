@@ -5,19 +5,28 @@ const { User } = require('../models/User')
 class SessionController {
   login = async (req, res, next) => {
     try {
-      const { body } = req
-      const { username, password } = body
+      const {
+        body: { email, password },
+      } = req
       const { JWT_PASSWORD } = process.env
-      const user = await User.findOne({ username })
+      const user = await User.findOne({ email })
       const passwordCorrect =
         user === null
           ? false
           : await bcrypt.compare(password, user.passwordHash)
 
       if (!(user && passwordCorrect))
-        return res.status(401).json({ error: 'invalid user or password' }).end()
+        return res
+          .status(401)
+          .json({ error: 'Usuario o contraseña invalida' })
+          .end()
 
-      const userForToken = { id: user._id, username: user.username }
+      const userForToken = {
+        id: user._id,
+        fullname: user.fullname,
+        rol: user.rol,
+        status: user.status,
+      }
       const token = jwt.sign(userForToken, JWT_PASSWORD)
 
       return res
