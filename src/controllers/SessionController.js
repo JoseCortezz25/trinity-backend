@@ -10,6 +10,13 @@ class SessionController {
       } = req
       const { JWT_PASSWORD } = process.env
       const user = await User.findOne({ email })
+      if (!user) {
+        return res
+          .status(401)
+          .json({ error: 'El usuario no esta registrado' })
+          .end()
+      }
+
       const passwordCorrect =
         user === null
           ? false
@@ -28,7 +35,7 @@ class SessionController {
         status: user.status,
       }
       const token = jwt.sign(userForToken, JWT_PASSWORD)
-
+      console.log('token', token)
       return res
         .status(200)
         .json({ ...userForToken, token })

@@ -208,7 +208,7 @@ const BackendPath = {
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At.',
   topics: [
     {
-      topic: 'Topic 1',
+      topic: 'PHP',
       sections: [
         {
           level: 'Principiante',

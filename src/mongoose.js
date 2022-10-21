@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const { USER_MONGO, PASS_MONGO, NODE_ENV } = process.env
 
-const DB_URI = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@trinity.pxefqkg.mongodb.net/?retryWrites=true&w=majority`
+const DB_URI = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@cluster0.yfzokwt.mongodb.net/?retryWrites=true&w=majority`
 
 mongoose
   .connect(DB_URI, {
